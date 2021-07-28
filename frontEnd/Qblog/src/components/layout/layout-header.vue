@@ -15,7 +15,7 @@
             <div class="menu-item hasChild">
                 <a href="#">文章</a>
                 <div class="childMenu" v-if="category.length">
-                    <div class="sub-menu" v-for="item in category" :key="item.id"><router-link :to="`/category/${item.id}?classify=${item.classify_name}`">{{item.classify_name}}</router-link></div>
+                    <div class="sub-menu" v-for="item in category" :key="item.id"><router-link :to="`/category/${item.id}?classify=${item.classify_name}`">{{item.classify_name}} <span class="count">{{item.issueArtcleCount}}</span> </router-link></div>
                 </div>
             </div>
             <div class="menu-item"><router-link to="/friend">友链</router-link></div>
@@ -141,6 +141,12 @@
                 opacity:1;
                 visibility: visible;
                 transform: translateY(-5px);
+            }
+            .count{
+                background: #ccc;
+                color:#fff;
+                padding: 0 4px;
+                border-radius: 8px;
             }
         }
         .childMenu{

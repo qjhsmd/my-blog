@@ -4,6 +4,7 @@ import { CommentEntity } from './comment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, IsNull, Not } from 'typeorm';
 import { CacheService } from '../app/cache.service';
+import { ClassifyService } from '../classify/classify.service';
 
 @Injectable()
 export class ArtcleService {
@@ -12,6 +13,7 @@ export class ArtcleService {
     @InjectRepository(CommentEntity)
     private artcleRepository: Repository<ArtcleEntity>,
     private readonly cacheService: CacheService,
+    private readonly classifyService: ClassifyService,
   ) {}
 
   async saveArtcle(artcle: ArtcleEntity): Promise<ArtcleEntity> {
@@ -24,6 +26,10 @@ export class ArtcleService {
       // };
       // artcle.commentEntity = [params, params1];
       artcle.modify_time = new Date();
+      await this.classifyService.setArtcleCount(
+        artcle.classify_id,
+        artcle.artcle_status,
+      );
       const res = await this.artcleRepository.save(artcle);
       return res;
     } catch (err) {
@@ -77,6 +83,8 @@ export class ArtcleService {
 
   async remove(id: number): Promise<DeleteResult> {
     try {
+      const artcle: any = await this.artcleRepository.findOne(id);
+      await this.classifyService.setArtcleCount(artcle.classify_id, 40);
       return await this.artcleRepository.delete(id);
     } catch (err) {
       console.log(err);
@@ -88,6 +96,10 @@ export class ArtcleService {
     try {
       const artcle: any = await this.artcleRepository.findOne(id);
       artcle.artcle_status = 20;
+      await this.classifyService.setArtcleCount(
+        artcle.classify_id,
+        artcle.artcle_status,
+      );
       return await this.artcleRepository.save(artcle);
     } catch (err) {
       console.log(err);
@@ -98,6 +110,10 @@ export class ArtcleService {
     try {
       const artcle: any = await this.artcleRepository.findOne(id);
       artcle.artcle_status = 30;
+      await this.classifyService.setArtcleCount(
+        artcle.classify_id,
+        artcle.artcle_status,
+      );
       return await this.artcleRepository.save(artcle);
     } catch (err) {
       console.log(err);
