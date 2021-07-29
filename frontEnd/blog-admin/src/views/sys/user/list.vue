@@ -2,6 +2,7 @@
   <div class="app-container">
     <el-row>
       <el-button type="primary" size="small" @click="dialogVisible = true">新增</el-button>
+      <el-button type="primary" size="small" @click="redeploy">重新部署后台</el-button>
     </el-row>
     <br>
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
@@ -60,7 +61,7 @@
 </template>
 
 <script>
-import { userList, userRemove, saveUser } from '@/api/sys'
+import { userList, userRemove, saveUser, redeploy } from '@/api/sys'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
@@ -139,6 +140,13 @@ export default {
       userList(this.listQuery).then(response => {
         this.list = response.data.list
         this.total = response.data.total
+        this.listLoading = false
+      })
+    },
+    redeploy() {
+      this.listLoading = true
+      redeploy().then(response => {
+      }).finally(() => {
         this.listLoading = false
       })
     },

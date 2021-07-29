@@ -14,11 +14,30 @@ import { UserService } from './user.service';
 import { User } from './user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { execFile } from 'child_process';
 
+import shell from 'shelljs';
 @Controller('api/user')
 @ApiTags('用户信息')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get('redeploy')
+  @ApiOperation({ summary: '重新部署后台' })
+  async redeploy(): Promise<any> {
+    await execFile(
+      '/www/back-end/nest/src/modules/user/sys.sh',
+      null,
+      (error, stdout, stderr) => {
+        if (error) {
+          throw error;
+        }
+        console.log(stdout);
+      },
+    );
+    // shell.exec('./sys.sh');
+    return {};
+  }
 
   @Post('saveUser')
   @ApiOperation({ summary: '管理员创建用户' })

@@ -26,10 +26,7 @@ export class ArtcleService {
       // };
       // artcle.commentEntity = [params, params1];
       artcle.modify_time = new Date();
-      await this.classifyService.setArtcleCount(
-        artcle.classify_id,
-        artcle.artcle_status,
-      );
+      await this.classifyService.setArtcleCount(artcle.classify_id, 10);
       const res = await this.artcleRepository.save(artcle);
       return res;
     } catch (err) {

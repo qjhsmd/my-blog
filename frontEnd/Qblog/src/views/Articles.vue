@@ -85,6 +85,7 @@ import menuTree from "@/components/menu-tree";
 import { fetchComment, artcleDetail, addComment, listComment } from "../api";
 import { parseTime } from "@/utils/index";
 import commentMessageEditor from "comment-message-editor";
+import Prismjs from 'prismjs'; //引入插件
 export default {
   name: "articles",
   data() {
@@ -164,6 +165,10 @@ export default {
       artcleDetail({ id: this.$route.params.id })
         .then((res) => {
           this.details = res.data || [];
+          this.$nextTick(() => {
+            Prismjs.highlightAll(); //数据渲染完成后执行一次
+            this.createMenus()
+        });	
         })
         .catch((err) => {
           console.log(err);
@@ -192,6 +197,8 @@ export default {
             e[j].offsetTop,
             j + 1 === e.length ? undefined : e[j + 1].offsetTop
           );
+          let random = Math.round(Math.random()*100000);
+          e[j].id = `h${i}_blog_${random}`
           temp.push({
             h: i,
             title: e[j].innerText,
@@ -206,11 +213,6 @@ export default {
       }
       this.menus = arr;
     },
-  },
-  mounted() {
-    this.$nextTick(()=>{
-      this.createMenus()
-    })
   },
   created() {
     this.getComment()

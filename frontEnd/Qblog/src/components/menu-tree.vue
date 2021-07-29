@@ -1,6 +1,6 @@
 <template>
     <ul class="menus">
-        <li v-for="item in menus">
+        <li v-for="item in menus" :key="item.id">
             <a :href="`#${item.id}`">#{{item.title}}</a>
             <ul v-if="item[childLabel]" class="child">
                 <menu-tree :menus="item[childLabel]" :child-label="childLabel"></menu-tree>

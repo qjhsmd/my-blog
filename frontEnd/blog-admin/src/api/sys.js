@@ -45,4 +45,10 @@ export function visitsRemove(query) {
     params: query
   })
 }
+export function redeploy() {
+  return request({
+    url: '/api/user/redeploy',
+    method: 'get'
+  })
+}
 
