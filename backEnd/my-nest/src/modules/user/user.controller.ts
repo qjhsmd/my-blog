@@ -16,7 +16,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { execFile } from 'child_process';
 
-import shell from 'shelljs';
 @Controller('api/user')
 @ApiTags('用户信息')
 export class UserController {
