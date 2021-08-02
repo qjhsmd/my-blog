@@ -7,7 +7,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
 import { readFileSync } from 'fs';
-import SnowflakeId from 'snowflake-id';
+// import SnowflakeId from 'snowflake-id';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -26,7 +26,6 @@ async function bootstrap() {
 
   await app.listen(3000);
   readVersion();
-  console.log(guid(1));
 }
 bootstrap();
 
@@ -59,7 +58,7 @@ async function readVersion() {
   }
 }
 
-const guid = (num) => {
-  const id = new SnowflakeId();
-  return id.generate();
-};
+// const guid = (num) => {
+//   const id = new SnowflakeId();
+//   return id.generate();
+// };

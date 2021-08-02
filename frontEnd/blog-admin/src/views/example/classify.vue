@@ -4,13 +4,18 @@
       <el-button type="primary" size="small" @click="dialogVisible = true">新增</el-button>
     </el-row>
     <br>
-    <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 70%">
+    <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="分类名称" prop="classify_name" />
-      <el-table-column label="分类id" prop="id" width="100" />
-      <el-table-column label="父类id" prop="pid" width="130" />
-      <el-table-column align="center" label="操作" width="130">
+      <el-table-column align="center" label="分类id" prop="id" />
+      <el-table-column align="center" label="父类id" prop="pid" />
+      <el-table-column align="center" label="发布文章数量" prop="issueArtcleCount" />
+      <el-table-column align="center" label="总文章数量" prop="artcleCount" />
+      <el-table-column align="center" label="操作">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" icon="el-icon-delete" @click="removeClassify(scope.row.id)" />
+          <el-tooltip v-if="scope.row.artcleCount != 0" class="item" effect="dark" content="该分类还有文章，不能删除" placement="top-start">
+            <el-button type="primary" size="small" icon="el-icon-delete" @click="removeClassify(scope.row.id,'no')" />
+          </el-tooltip>
+          <el-button v-else type="primary" size="small" icon="el-icon-delete" @click="removeClassify(scope.row.id)" />
         </template>
       </el-table-column>
     </el-table>
@@ -66,7 +71,7 @@ export default {
       },
       form: {
         classify_name: '',
-        pid: ''
+        pid: '0'
       },
       rules: {
         classify_name: [
@@ -111,7 +116,14 @@ export default {
         }
       })
     },
-    removeClassify(id) {
+    removeClassify(id, status) {
+      if (status === 'no') {
+        this.$message({
+          type: 'error',
+          message: '该分类还有文章，不能删除!'
+        })
+        return false
+      }
       this.$confirm('此操作将永久删除该分类, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

@@ -18,15 +18,8 @@ export class ArtcleService {
 
   async saveArtcle(artcle: ArtcleEntity): Promise<ArtcleEntity> {
     try {
-      // const params: any = {
-      //   commentContent: '测试评论333',
-      // };
-      // const params1: any = {
-      //   commentContent: '测试评论444',
-      // };
-      // artcle.commentEntity = [params, params1];
       artcle.modify_time = new Date();
-      await this.classifyService.setArtcleCount(artcle.classify_id, 10);
+      await this.classifyService.setArtcleCount(artcle.classify_id, 10, 'add');
       const res = await this.artcleRepository.save(artcle);
       return res;
     } catch (err) {
@@ -81,7 +74,11 @@ export class ArtcleService {
   async remove(id: number): Promise<DeleteResult> {
     try {
       const artcle: any = await this.artcleRepository.findOne(id);
-      await this.classifyService.setArtcleCount(artcle.classify_id, 40);
+      await this.classifyService.setArtcleCount(
+        artcle.classify_id,
+        artcle.artcle_status,
+        'delete',
+      );
       return await this.artcleRepository.delete(id);
     } catch (err) {
       console.log(err);
@@ -96,6 +93,7 @@ export class ArtcleService {
       await this.classifyService.setArtcleCount(
         artcle.classify_id,
         artcle.artcle_status,
+        'issue',
       );
       return await this.artcleRepository.save(artcle);
     } catch (err) {
@@ -110,6 +108,7 @@ export class ArtcleService {
       await this.classifyService.setArtcleCount(
         artcle.classify_id,
         artcle.artcle_status,
+        'unIssue',
       );
       return await this.artcleRepository.save(artcle);
     } catch (err) {
@@ -147,7 +146,7 @@ export class ArtcleService {
           artcle_status: 20,
         },
         order: {
-          update_time: 'DESC',
+          modify_time: 'DESC',
         },
         skip: query.pageSize * (query.page - 1),
         take: query.pageSize,
