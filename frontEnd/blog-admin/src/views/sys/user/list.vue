@@ -146,6 +146,10 @@ export default {
     redeploy() {
       this.listLoading = true
       redeploy().then(response => {
+        this.$message({
+          type: 'warning',
+          message: '后台服务正在重启，请稍后刷新'
+        })
       }).finally(() => {
         this.listLoading = false
       })

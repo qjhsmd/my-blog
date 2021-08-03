@@ -29,27 +29,31 @@ export class ArtcleService {
   }
 
   async findAll(query: any): Promise<any> {
-    const total = await this.artcleRepository.count();
-    const list = await this.artcleRepository.find({
-      select: [
-        'title',
-        'classify_name',
-        'author',
-        'create_time',
-        'view_count',
-        'update_time',
-        'artcle_describe',
-        'artcle_status',
-        'modify_time',
-        'id',
-      ],
-      order: {
-        modify_time: 'DESC',
-      },
-      skip: query.pageSize * (query.page - 1),
-      take: query.pageSize,
-    });
-    return { total, list };
+    try {
+      const res = await this.artcleRepository.findAndCount({
+        select: [
+          'title',
+          'classify_name',
+          'author',
+          'create_time',
+          'view_count',
+          'update_time',
+          'artcle_describe',
+          'artcle_status',
+          'modify_time',
+          'id',
+        ],
+        order: {
+          modify_time: 'DESC',
+        },
+        skip: query.pageSize * (query.page - 1),
+        take: query.pageSize,
+      });
+      return { total: res[1], list: res[0] };
+    } catch (err) {
+      console.log(err);
+      throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
+    }
   }
 
   async findOne(id: number): Promise<any> {
