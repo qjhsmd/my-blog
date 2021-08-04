@@ -24,7 +24,7 @@
           <span>{{ new Date(scope.row.update_time) | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作">
+      <el-table-column align="center" label="操作" width="150">
         <template slot-scope="scope">
           <el-button type="primary" size="small" icon="el-icon-edit" />
           <el-button type="primary" size="small" icon="el-icon-delete" @click="userRemove(scope.row.id)" />

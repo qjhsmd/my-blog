@@ -33,7 +33,8 @@ export class ArtcleController {
   @Get('findAll')
   @ApiOperation({ summary: '文章列表' })
   async findAll(@Query() query: any): Promise<ArtcleEntity> {
-    return await this.artcleService.findAll(query);
+    const res = await this.artcleService.findAll(query);
+    return res;
   }
 
   @UseGuards(AuthGuard('jwt'))

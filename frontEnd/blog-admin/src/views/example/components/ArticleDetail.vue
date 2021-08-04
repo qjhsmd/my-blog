@@ -229,6 +229,9 @@ export default {
           this.postForm.platforms = this.postForm.platformsArray.join(',')
           this.loading = true
           saveArtcle(this.postForm).then(res => {
+            console.log('====开始=====')
+            console.log(res)
+            console.log('====结束=====')
             this.postForm.status = 'published'
             this.$notify({
               title: '成功',
