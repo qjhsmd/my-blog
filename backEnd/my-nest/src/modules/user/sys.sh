@@ -6,4 +6,4 @@ cnpm install &&
 cp -r /www/res/my-blog/backEnd/my-nest/* /www/back-end/nest/
 npm run build && 
 pm2 restart 2 
-echo "编译成功"
+echo "后台编译成功"

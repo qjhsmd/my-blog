@@ -6,4 +6,4 @@ cnpm install &&
 npm run build &&
 rm -rf /www/front-end/blog/dist/* &&
 cp -r /www/res/my-blog/frontEnd/Qblog/dist/* /www/front-end/blog/dist/
-echo "编译成功"
+echo "博客端编译成功"
