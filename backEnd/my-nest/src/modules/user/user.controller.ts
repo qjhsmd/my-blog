@@ -25,7 +25,7 @@ export class UserController {
   @ApiOperation({ summary: '重新部署后台' })
   async redeploy(): Promise<any> {
     await execFile(
-      '/www/back-end/nest/src/modules/user/sys.sh',
+      '/www/res/my-blog/backEnd/my-nest/src/modules/user/sys.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
@@ -34,7 +34,36 @@ export class UserController {
         console.log(stdout);
       },
     );
-    // shell.exec('./sys.sh');
+    return {};
+  }
+  @Get('adminRedeploy')
+  @ApiOperation({ summary: '重新部署blog-admin' })
+  async adminRedeploy(): Promise<any> {
+    await execFile(
+      '/www/res/my-blog/backEnd/my-nest/src/modules/user/sysAdmin.sh',
+      null,
+      (error, stdout, stderr) => {
+        if (error) {
+          throw error;
+        }
+        console.log(stdout);
+      },
+    );
+    return {};
+  }
+  @Get('blogRedeploy')
+  @ApiOperation({ summary: '重新部署blog' })
+  async blogRedeploy(): Promise<any> {
+    await execFile(
+      '/www/res/my-blog/backEnd/my-nest/src/modules/user/sysBlog.sh',
+      null,
+      (error, stdout, stderr) => {
+        if (error) {
+          throw error;
+        }
+        console.log(stdout);
+      },
+    );
     return {};
   }
 

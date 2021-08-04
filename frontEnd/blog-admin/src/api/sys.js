@@ -51,4 +51,16 @@ export function redeploy() {
     method: 'get'
   })
 }
+export function adminRedeploy() {
+  return request({
+    url: '/api/user/adminRedeploy',
+    method: 'get'
+  })
+}
+export function blogRedeploy() {
+  return request({
+    url: '/api/user/blogRedeploy',
+    method: 'get'
+  })
+}
 

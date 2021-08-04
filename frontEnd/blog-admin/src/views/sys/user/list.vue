@@ -3,6 +3,8 @@
     <el-row>
       <el-button type="primary" size="small" @click="dialogVisible = true">新增</el-button>
       <el-button type="primary" size="small" @click="redeploy">重新部署后台</el-button>
+      <el-button type="primary" size="small" @click="adminRedeploy">重新部署Blog-admin</el-button>
+      <el-button type="primary" size="small" @click="blogRedeploy">重新部署Blog</el-button>
     </el-row>
     <br>
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
@@ -61,7 +63,7 @@
 </template>
 
 <script>
-import { userList, userRemove, saveUser, redeploy } from '@/api/sys'
+import { userList, userRemove, saveUser, redeploy, adminRedeploy, blogRedeploy } from '@/api/sys'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
@@ -149,6 +151,28 @@ export default {
         this.$message({
           type: 'warning',
           message: '后台服务正在重启，请稍后刷新'
+        })
+      }).finally(() => {
+        this.listLoading = false
+      })
+    },
+    adminRedeploy() {
+      this.listLoading = true
+      adminRedeploy().then(response => {
+        this.$message({
+          type: 'warning',
+          message: '后台服务正在重新部署管理端，请稍后刷新管理端'
+        })
+      }).finally(() => {
+        this.listLoading = false
+      })
+    },
+    blogRedeploy() {
+      this.listLoading = true
+      blogRedeploy().then(response => {
+        this.$message({
+          type: 'warning',
+          message: '后台服务正在重新部署Blog端，请稍后刷新Blog端'
         })
       }).finally(() => {
         this.listLoading = false
