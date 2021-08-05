@@ -46,7 +46,7 @@ export class ArtcleService {
         order: {
           modify_time: 'DESC',
         },
-        skip: query.pageSize * (query.page - 1),
+        skip: query.pageSize * (query.pageNum - 1),
         take: query.pageSize,
       });
       return { total: res[1], list: res[0] };
@@ -130,7 +130,7 @@ export class ArtcleService {
       //     artcle_status: 20,
       //   },
       // });
-      const skip = query.pageSize * (query.page - 1);
+      const skip = query.pageSize * (query.pageNum - 1);
       const res = await this.artcleRepository.findAndCount({
         select: [
           'title',
@@ -163,7 +163,7 @@ export class ArtcleService {
       if (num >= total) {
         hasNextPage = false;
       }
-      return { total, list, hasNextPage, page: Number(query.page) };
+      return { total, list, hasNextPage, pageNum: Number(query.pageNum) };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);

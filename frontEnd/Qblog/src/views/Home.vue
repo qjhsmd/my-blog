@@ -58,7 +58,7 @@ export default {
       postList: [],
       params:{
         pageSize:10,
-        page:1,
+        pageNum:1,
         classify_id: this.$route.params.cate
       },
       currPage: 1,
@@ -110,7 +110,7 @@ export default {
       fetchList(this.params)
         .then((res) => {
           this.postList = res.data.list || [];
-          this.currPage = Number(res.data.page);
+          this.currPage = Number(res.data.pageNum);
           this.hasNextPage = res.data.hasNextPage;
         })
         .catch((err) => {
@@ -118,9 +118,11 @@ export default {
         });
     },
     loadMore() {
-      fetchList({ page: this.currPage + 1,pageSize:this.params.pageSize }).then((res) => {
+      this.params.pageNum = this.currPage + 1
+      this.params.pageSize = this.params.pageSize
+      fetchList(this.params).then((res) => {
         this.postList = this.postList.concat(res.data.list || []);
-        this.currPage = Number(res.data.page);
+        this.currPage = Number(res.data.pageNum);
         this.hasNextPage = res.data.hasNextPage;
       });
     },

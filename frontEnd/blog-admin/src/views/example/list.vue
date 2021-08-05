@@ -37,7 +37,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        page: 1,
+        pageNum: 1,
         pageSize: 10
       }
     }
