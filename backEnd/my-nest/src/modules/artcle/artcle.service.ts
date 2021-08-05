@@ -124,13 +124,14 @@ export class ArtcleService {
   //博客
   async blogFindAll(query: any): Promise<any> {
     try {
-      const total = await this.artcleRepository.count({
-        where: {
-          classify_id: query.classify_id ? query.classify_id : Not(IsNull()),
-          artcle_status: 20,
-        },
-      });
-      const list = await this.artcleRepository.find({
+      // const total = await this.artcleRepository.count({
+      //   where: {
+      //     classify_id: query.classify_id ? query.classify_id : Not(IsNull()),
+      //     artcle_status: 20,
+      //   },
+      // });
+      const skip = query.pageSize * (query.page - 1);
+      const res = await this.artcleRepository.findAndCount({
         select: [
           'title',
           'classify_name',
@@ -152,10 +153,17 @@ export class ArtcleService {
         order: {
           modify_time: 'DESC',
         },
-        skip: query.pageSize * (query.page - 1),
+        skip: skip,
         take: query.pageSize,
       });
-      return { total, list };
+      const total = res[1];
+      const list = res[0];
+      const num = skip + list.length;
+      let hasNextPage = true;
+      if (num >= total) {
+        hasNextPage = false;
+      }
+      return { total, list, hasNextPage, page: Number(query.page) };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
