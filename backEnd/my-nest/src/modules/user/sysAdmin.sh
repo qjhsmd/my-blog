@@ -4,6 +4,6 @@ git pull &&
 cd /www/res/my-blog/frontEnd/blog-admin &&
 cnpm install &&
 npm run build:prod &&
-rm -rf /www/front-end/blog-admin &&
+rm -rf /www/front-end/blog-admin/* &&
 cp -r /www/res/my-blog/frontEnd/blog-admin/dist/* /www/front-end/blog-admin/
 echo "管理端编译成功"
