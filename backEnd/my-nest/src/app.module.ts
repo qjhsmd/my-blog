@@ -22,6 +22,8 @@ import { MsgEntity } from './modules/msg/msg.entity';
 import { VisitsEntity } from './modules/visits/visits.entity';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 
+import { eventsGateway } from './modules/app/events.gateway';
+
 import { RedisModule } from 'nestjs-redis';
 @Module({
   imports: [
@@ -58,7 +60,7 @@ import { RedisModule } from 'nestjs-redis';
     VisitsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CacheService],
+  providers: [AppService, CacheService, eventsGateway],
   exports: [CacheService],
 })
 export class AppModule implements NestModule {
