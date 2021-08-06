@@ -42,11 +42,6 @@ module.exports = {
         target: 'http://10.31.52.38:3000',
         ws: true,
         changeOrigin: true
-      },
-      '/socket.io': {
-        target: 'http://10.31.52.38:3001',
-        ws: true,
-        changeOrigin: true
       }
 
     },

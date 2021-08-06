@@ -24,13 +24,13 @@ import VueSocketIO from 'vue-socket.io'
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'http://10.31.52.38:9527',
+  connection: 'ws://10.31.52.38:3001',
   vuex: {
     store,
     actionPrefix: 'SOCKET_',
     mutationPrefix: 'SOCKET_'
   },
-  options: { path: '' } // Optional options
+  options: { path: '/events', transports: ['websocket'] } // Optional options
 }))
 /**
  * If you don't want to use mock-server

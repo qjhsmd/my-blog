@@ -12,6 +12,7 @@ export class WsAdapter implements WebSocketAdapter {
     return new WebSocket.Server({ port, ...options });
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   bindClientConnect(server, callback: Function) {
     console.log('ws bindClientConnect, server:\n', server);
     server.on('connection', callback);

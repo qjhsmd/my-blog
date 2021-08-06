@@ -68,14 +68,6 @@ import Pagination from '@/components/Pagination' // Secondary package based on e
 
 export default {
   name: 'UserList',
-  sockets: { // 通过vue实例对象sockets实现组件中的事件监听
-    connect: function() { // socket的connect事件
-      console.log('socket connected from Page')
-    },
-    STREAM_STATUS(data) { // 后端按主题名推送的消息数据
-      console.log('Page：' + data)
-    }
-  },
   components: { Pagination },
   filters: {
     statusFilter(status) {
@@ -122,9 +114,6 @@ export default {
   },
   created() {
     this.getList()
-  },
-  mounted() {
-    this.$socket.emit('STREAM_STATUS', { subscribe: true })// 在页面加载时发起订阅，“STREAM_STATUS”是你跟后端约定好的主题名
   },
   methods: {
     postClassify(formName) {
