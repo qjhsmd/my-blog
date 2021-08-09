@@ -20,9 +20,8 @@ import { CommentEntity } from './modules/artcle/comment.entity';
 import { MyClassify } from './modules/classify/classify.entity';
 import { MsgEntity } from './modules/msg/msg.entity';
 import { VisitsEntity } from './modules/visits/visits.entity';
+import { EventsModule } from './modules/events/events.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
-
-import { eventsGateway } from './modules/app/events.gateway';
 
 import { RedisModule } from 'nestjs-redis';
 @Module({
@@ -58,9 +57,10 @@ import { RedisModule } from 'nestjs-redis';
     SocialModule,
     FileModule,
     VisitsModule,
+    EventsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CacheService, eventsGateway],
+  providers: [AppService, CacheService],
   exports: [CacheService],
 })
 export class AppModule implements NestModule {

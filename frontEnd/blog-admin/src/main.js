@@ -20,18 +20,19 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
-import VueSocketIO from 'vue-socket.io'
-
-Vue.use(new VueSocketIO({
-  debug: true,
-  connection: 'ws://10.31.52.38:3001',
-  vuex: {
-    store,
-    actionPrefix: 'SOCKET_',
-    mutationPrefix: 'SOCKET_'
-  },
-  options: { path: '/events', transports: ['websocket'] } // Optional options
-}))
+// import VueSocketIO from 'vue-socket.io'
+// import SocketIO from 'socket.io-client'
+// Vue.use(new VueSocketIO({
+//   debug: true,
+//   // connection: 'http://10.31.52.38:3001',
+//   connection: SocketIO('ws://10.31.52.38:3002', { transports: ['websocket'] }), //, { path: '/', transports: ['websocket'] }
+//   vuex: {
+//     store,
+//     actionPrefix: 'SOCKET_',
+//     mutationPrefix: 'SOCKET_'
+//   }
+//   // options: { path: '/', transports: ['polling'] } // Optional options  websocket
+// }))
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
