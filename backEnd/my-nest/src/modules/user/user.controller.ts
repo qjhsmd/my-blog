@@ -28,13 +28,21 @@ export class UserController {
   @Get('redeploy')
   @ApiOperation({ summary: '重新部署后台' })
   async redeploy(): Promise<any> {
+    const params = {
+      subject: '您重新编译后台',
+      text: '编译成功，部署成功',
+    };
     await execFile(
       '/www/back-end/nest/src/modules/user/sys.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
+          params.text = '编译失败，请尽快重试';
+          this.mailService.sendMail(params);
           throw error;
         }
+        this.mailService.sendMail(params);
+
         console.log(stdout);
       },
     );
@@ -43,14 +51,21 @@ export class UserController {
   @Get('adminRedeploy')
   @ApiOperation({ summary: '重新部署blog-admin' })
   async adminRedeploy(): Promise<any> {
+    const params = {
+      subject: '您重新编译管理端',
+      text: '编译成功，部署成功',
+    };
     await execFile(
       '/www/back-end/nest/src/modules/user/sysAdmin.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
+          params.text = '编译失败，请尽快重试';
+          this.mailService.sendMail(params);
           throw error;
         }
         console.log(stdout);
+        this.mailService.sendMail(params);
       },
     );
     return {};
@@ -58,18 +73,20 @@ export class UserController {
   @Get('blogRedeploy')
   @ApiOperation({ summary: '重新部署blog' })
   async blogRedeploy(): Promise<any> {
+    const params = {
+      subject: '您重新编译博客端',
+      text: '编译成功，部署成功',
+    };
     await execFile(
       '/www/back-end/nest/src/modules/user/sysBlog.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
+          params.text = '编译失败，请尽快重试';
+          this.mailService.sendMail(params);
           throw error;
         }
         console.log(stdout);
-        const params = {
-          subject: '您重新部署了博客端',
-          text: '部署成功',
-        };
         this.mailService.sendMail(params);
       },
     );
