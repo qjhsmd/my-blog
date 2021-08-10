@@ -15,11 +15,15 @@ import { User } from './user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { execFile } from 'child_process';
+import { MailService } from '../mailer/mailer.service';
 
 @Controller('api/user')
 @ApiTags('用户信息')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private mailService: MailService,
+  ) {}
 
   @Get('redeploy')
   @ApiOperation({ summary: '重新部署后台' })
@@ -62,6 +66,11 @@ export class UserController {
           throw error;
         }
         console.log(stdout);
+        const params = {
+          subject: '您重新部署了博客端',
+          text: '部署成功',
+        };
+        this.mailService.sendMail(params);
       },
     );
     return {};

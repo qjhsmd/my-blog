@@ -12,6 +12,8 @@ import { MsgModule } from './modules/msg/msg.module';
 import { SocialModule } from './modules/social/social.module';
 import { FileModule } from './modules/file/file.module';
 import { VisitsModule } from './modules/visits/visits.module';
+import { EventsModule } from './modules/events/events.module';
+import { MailModule } from './modules/mailer/mailer.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './modules/user/user.entity';
@@ -20,9 +22,7 @@ import { CommentEntity } from './modules/artcle/comment.entity';
 import { MyClassify } from './modules/classify/classify.entity';
 import { MsgEntity } from './modules/msg/msg.entity';
 import { VisitsEntity } from './modules/visits/visits.entity';
-import { EventsModule } from './modules/events/events.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
-
 import { RedisModule } from 'nestjs-redis';
 @Module({
   imports: [
@@ -58,6 +58,7 @@ import { RedisModule } from 'nestjs-redis';
     FileModule,
     VisitsModule,
     EventsModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService, CacheService],

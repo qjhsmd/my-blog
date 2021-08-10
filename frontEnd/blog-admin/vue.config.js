@@ -32,17 +32,17 @@ module.exports = {
   devServer: {
     port: port,
     open: true,
-    // proxy: {
-      // '/api': {
-      //   target: 'http://10.31.52.38:3000',
-      //   ws: false,
-      //   changeOrigin: true
-      // },
-      // '/public': {
-      //   target: 'http://10.31.52.38:3000',
-      //   ws: false,
-      //   changeOrigin: true
-      // }
+    proxy: {
+      '/api': {
+        target: 'http://10.31.52.38:3000',
+        ws: false,
+        changeOrigin: true
+      },
+      '/public': {
+        target: 'http://10.31.52.38:3000',
+        ws: false,
+        changeOrigin: true
+      }
       // '/socket.io': {
       //   target: 'ws://10.31.52.38:3002',
       //   ws: false,
@@ -53,7 +53,7 @@ module.exports = {
       //   ws: false,
       //   changeOrigin: true
       // }
-    // },
+    },
     overlay: {
       warnings: false,
       errors: true

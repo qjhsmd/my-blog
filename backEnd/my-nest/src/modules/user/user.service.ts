@@ -3,18 +3,26 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection, DeleteResult } from 'typeorm';
 import { User } from './user.entity';
 import { searchUser } from './user.interface';
+import { MailService } from '../mailer/mailer.service';
+
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private connection: Connection,
+    private mailService: MailService,
   ) {}
 
   async saveUser(user: User): Promise<void> {
     try {
       const res = await this.usersRepository.save(user);
       console.log(res);
+      const params = {
+        subject: '您创建了一个新用户',
+        text: '用户名：' + user.user_name,
+      };
+      this.mailService.sendMail(params);
     } catch (err) {
       // return err;
       throw new HttpException(
