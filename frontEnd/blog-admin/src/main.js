@@ -25,7 +25,7 @@ import SocketIO from 'socket.io-client'
 Vue.use(new VueSocketIO({
   debug: true,
   // connection: 'http://10.31.52.38:3001',
-  connection: SocketIO('ws://10.31.52.216:3002', { transports: ['websocket'] }) //, { path: '/', transports: ['websocket'] }
+  connection: SocketIO('ws://106.53.251.59:3002', { transports: ['websocket'] }) //, { path: '/', transports: ['websocket'] }
   // vuex: {
   //   store,
   //   actionPrefix: 'SOCKET_',
