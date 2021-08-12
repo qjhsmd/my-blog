@@ -14,14 +14,14 @@
 
 export default {
   name: 'Msg',
-  sockets: { // 通过vue实例对象sockets实现组件中的事件监听
-    connect: function() { // socket的connect事件
-      console.log('socket connected from Page 哈哈哈哈')
-    },
-    events(data) { // 后端按主题名推送的消息数据
-      console.log('Page：' + data)
-    }
-  },
+  // sockets: { // 通过vue实例对象sockets实现组件中的事件监听
+  //   connect: function() { // socket的connect事件
+  //     console.log('socket connected from Page 哈哈哈哈')
+  //   },
+  //   events(data) { // 后端按主题名推送的消息数据
+  //     console.log('Page：' + data)
+  //   }
+  // },
   // components: { Pagination },
 
   data() {
@@ -66,11 +66,11 @@ export default {
   },
   methods: {
     socketButton() {
-      console.log('就这？')
+      // console.log('就这？')
       // this.socket.emit('events', {
       //   name: 'fff'
       // })
-      this.$socket.emit('events', '我们来嘿嘿嘿')// 在页面加载时发起订阅，“STREAM_STATUS”是你跟后端约定好的主题名
+      // this.$socket.emit('events', '我们来嘿嘿嘿')// 在页面加载时发起订阅，“STREAM_STATUS”是你跟后端约定好的主题名
     }
   }
 }
