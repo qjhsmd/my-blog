@@ -17,7 +17,6 @@ export class UserService {
   async saveUser(user: User): Promise<void> {
     try {
       const res = await this.usersRepository.save(user);
-      console.log(res);
       const params = {
         subject: '您创建了一个新用户',
         text: '用户名：' + user.user_name,

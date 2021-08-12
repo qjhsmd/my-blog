@@ -45,12 +45,12 @@ module.exports = {
       }
       // '/socket.io': {
       //   target: 'ws://10.31.52.38:3002',
-      //   ws: false,
+      //   ws: true,
       //   changeOrigin: true
       // },
-      // 'sockjs-node': {
+      // '/sockjs-node': {
       //   target: 'ws://10.31.52.38:3002',
-      //   ws: false,
+      //   ws: true,
       //   changeOrigin: true
       // }
     },

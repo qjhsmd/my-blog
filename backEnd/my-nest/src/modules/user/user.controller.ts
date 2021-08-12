@@ -109,6 +109,7 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @Get('userInfo')
   async findOne(@Request() req: any): Promise<any> {
+    debugger;
     return await this.userService.findOne(req.user.id);
   }
 

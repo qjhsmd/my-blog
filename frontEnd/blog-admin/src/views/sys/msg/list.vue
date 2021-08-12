@@ -10,18 +10,18 @@
 
 <script>
 // import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
-import SocketIO from 'socket.io-client'
+// import SocketIO from 'socket.io-client'
 
 export default {
   name: 'Msg',
-  // sockets: { // 通过vue实例对象sockets实现组件中的事件监听
-  //   connect: function() { // socket的connect事件
-  //     console.log('socket connected from Page 哈哈哈哈')
-  //   },
-  //   events(data) { // 后端按主题名推送的消息数据
-  //     console.log('Page：' + data)
-  //   }
-  // },
+  sockets: { // 通过vue实例对象sockets实现组件中的事件监听
+    connect: function() { // socket的connect事件
+      console.log('socket connected from Page 哈哈哈哈')
+    },
+    events(data) { // 后端按主题名推送的消息数据
+      console.log('Page：' + data)
+    }
+  },
   // components: { Pagination },
 
   data() {
@@ -38,39 +38,39 @@ export default {
   created() {
   },
   mounted() {
-    this.socket = SocketIO('ws://10.31.52.38:3002', {
-      // path: '/',
-      transports: ['websocket']
-    })
-    this.socket.on('connect', function() {
-      console.log('链接成功')
+    // this.socket = SocketIO('ws://10.31.52.38:3002', {
+    //   // path: '/',
+    //   transports: ['websocket']
+    // })
+    // this.socket.on('connect', function() {
+    //   console.log('链接成功')
 
-      // 发射
-      this.socket.emit('events', {
-        name: 'aaaa'
-      })
+    //   // 发射
+    //   this.socket.emit('events', {
+    //     name: 'aaaa'
+    //   })
 
-      // 发射
-      this.socket.emit('events', {
-        name: 'aaddd'
-      })
+    //   // 发射
+    //   this.socket.emit('events', {
+    //     name: 'aaddd'
+    //   })
 
-      // 发射
-      // socket.emit('identity', 0, (response) => console.log('Identity:', response));
-    })
+    //   // 发射
+    //   // socket.emit('identity', 0, (response) => console.log('Identity:', response));
+    // })
 
-    // 监听
-    this.socket.on('events', (data) => {
-      console.log(data.msg)
-    })
+    // // 监听
+    // this.socket.on('events', (data) => {
+    //   console.log(data.msg)
+    // })
   },
   methods: {
     socketButton() {
       console.log('就这？')
-      this.socket.emit('events', {
-        name: 'fff'
-      })
-      // this.$socket.emit('events', '我们来嘿嘿嘿')// 在页面加载时发起订阅，“STREAM_STATUS”是你跟后端约定好的主题名
+      // this.socket.emit('events', {
+      //   name: 'fff'
+      // })
+      this.$socket.emit('events', '我们来嘿嘿嘿')// 在页面加载时发起订阅，“STREAM_STATUS”是你跟后端约定好的主题名
     }
   }
 }

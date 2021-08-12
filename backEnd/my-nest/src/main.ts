@@ -8,8 +8,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 // import SnowflakeId from 'snowflake-id';
-// import { WsAdapter } from './modules/app/ws.adapter';
-import { WsAdapter } from '@nestjs/platform-ws';
+import { WsAdapter } from './modules/events/ws.adapter';
+// import { WsAdapter } from '@nestjs/platform-ws';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
@@ -17,7 +17,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   // 全局注册拦截器
   app.useGlobalInterceptors(new TransformInterceptor());
-  //app.useWebSocketAdapter(new WsAdapter(app)); // 使用我们的适配器
+  // app.useWebSocketAdapter(new WsAdapter(app)); // 使用我们的适配器
   // 配置静态文件
   app.useStaticAssets(join(__dirname, '../', 'public'), {
     prefix: '/public/',
