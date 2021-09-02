@@ -57,7 +57,7 @@ export default {
       features: [],
       postList: [],
       params:{
-        pageSize:10,
+        pageSize:5,
         pageNum:1,
         classify_id: this.$route.params.cate
       },
