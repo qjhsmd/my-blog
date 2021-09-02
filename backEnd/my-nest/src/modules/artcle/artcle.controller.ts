@@ -69,7 +69,12 @@ export class ArtcleController {
   @Get('blogList')
   @ApiOperation({ summary: '博客展示列表' })
   async blogList(@Query() query: any): Promise<ArtcleEntity> {
-    return await this.artcleService.blogFindAll(query);
+    try {
+      return await this.artcleService.blogFindAll(query);
+    } catch (error) {
+      console.log(error);
+      return error
+    }
   }
 
   @Get('blogDetail')
