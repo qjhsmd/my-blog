@@ -1,9 +1,16 @@
+/*
+ * @version: 1.0
+ * @Author: QJH
+ * @Date: 2021-07-28 09:34:37
+ * @LastEditors: QJH
+ * @LastEditTime: 2021-10-18 16:31:48
+ */
 import request from '@/utils/request'
 
 export function fetchList(params) {
     return request({
         url: '/api/artcle/blogList',
-        method: 'get',
+        method: 'post',
         params: params
     })
 }

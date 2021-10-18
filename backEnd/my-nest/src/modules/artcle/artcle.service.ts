@@ -163,7 +163,6 @@ export class ArtcleService {
       if (num >= total) {
         hasNextPage = false;
       }
-      console.log('文章数量' + total);
       return { total, list, hasNextPage, pageNum: Number(query.pageNum) };
     } catch (err) {
       console.log(err);
