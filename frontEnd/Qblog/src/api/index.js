@@ -3,13 +3,13 @@
  * @Author: QJH
  * @Date: 2021-07-28 09:34:37
  * @LastEditors: QJH
- * @LastEditTime: 2021-10-18 16:31:48
+ * @LastEditTime: 2021-10-20 10:58:30
  */
 import request from '@/utils/request'
 
 export function fetchList(params) {
     return request({
-        url: '/api/artcle/blogList',
+        url: '/api/artcle/bokexxxx',
         method: 'post',
         params: params
     })

@@ -66,9 +66,9 @@ export class ArtcleController {
   }
 
   // 博客展示接口
-  @Post('blogList')
+  @Post('bokexxxx')
   @ApiOperation({ summary: '博客展示列表' })
-  async blogList(@Query() query: any): Promise<ArtcleEntity> {
+  async bokexxxx(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);
       return res;
