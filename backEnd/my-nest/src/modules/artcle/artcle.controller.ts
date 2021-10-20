@@ -66,7 +66,7 @@ export class ArtcleController {
   }
 
   // 博客展示接口
-  @Post('heiheihei')
+  @Post('wenzhangliebiao')
   @ApiOperation({ summary: '博客展示列表' })
   async bokexxxx(@Query() query: any): Promise<ArtcleEntity> {
     try {
