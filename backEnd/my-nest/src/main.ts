@@ -1,3 +1,10 @@
+/*
+ * @version: 1.0
+ * @Author: QJH
+ * @Date: 2021-07-28 09:34:37
+ * @LastEditors: QJH
+ * @LastEditTime: 2021-10-20 13:44:56
+ */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
@@ -50,6 +57,8 @@ async function readVersion() {
     );
     // 等待操作结果返回，然后打印结果
     const version = data.split('\r\n');
+    console.log(version);
+    
     console.log(
       '当前版本：' +
         version[version.length - 1] +
