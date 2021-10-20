@@ -124,12 +124,6 @@ export class ArtcleService {
   //博客
   async blogFindAll(query: any): Promise<any> {
     try {
-      // const total = await this.artcleRepository.count({
-      //   where: {
-      //     classify_id: query.classify_id ? query.classify_id : Not(IsNull()),
-      //     artcle_status: 20,
-      //   },
-      // });
       const skip = query.pageSize * (query.pageNum - 1);
       const res = await this.artcleRepository.findAndCount({
         select: [
@@ -154,7 +148,7 @@ export class ArtcleService {
           modify_time: 'DESC',
         },
         skip: skip,
-        take: query.pageSize,
+        take: 2,
       });
       const total = res[1];
       const list = res[0];
