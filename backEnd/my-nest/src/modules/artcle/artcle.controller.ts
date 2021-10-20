@@ -22,7 +22,7 @@ import {
 
 @ApiBearerAuth()
 @ApiTags('文章管理')
-@Controller('api/artcle')
+@Controller('api/xxxx')
 export class ArtcleController {
   constructor(
     private readonly artcleService: ArtcleService,
