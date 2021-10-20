@@ -3,7 +3,7 @@
  * @Author: QJH
  * @Date: 2021-07-28 09:34:37
  * @LastEditors: QJH
- * @LastEditTime: 2021-10-20 11:14:29
+ * @LastEditTime: 2021-10-20 11:07:40
  */
 import request from '@/utils/request'
 
@@ -25,7 +25,7 @@ export function fetchFocus() {
 
 export function fetchCategory() {
     return request({
-        url: '/api/xxxx/classify/findAll',
+        url: '/api/artcle/classify/findAll',
         method: 'get',
         params: {}
     })

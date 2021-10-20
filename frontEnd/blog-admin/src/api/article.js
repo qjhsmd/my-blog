@@ -10,7 +10,7 @@ export function fetchList(query) {
 
 export function fetchArticle(id) {
   return request({
-    url: '/api/artcle/getArtcleDetail',
+    url: '/api/xxxx/getArtcleDetail',
     method: 'get',
     params: { id }
   })
@@ -34,7 +34,7 @@ export function createArticle(data) {
 
 export function updateArticle(data) {
   return request({
-    url: '/api/artcle/updateArtcle',
+    url: '/api/xxxx/updateArtcle',
     method: 'put',
     data
   })
@@ -43,7 +43,7 @@ export function updateArticle(data) {
 export function listArtcle(params) {
   return request({
     // url: '/api/list_artcle',
-    url: '/api/artcle/findAll',
+    url: '/api/xxxx/findAll',
     method: 'get',
     params
   })
@@ -51,7 +51,7 @@ export function listArtcle(params) {
 
 export function saveArtcle(data) {
   return request({
-    url: '/api/artcle/saveArtcle',
+    url: '/api/xxxx/saveArtcle',
     method: 'post',
     data
   })
@@ -83,14 +83,14 @@ export function postClassify(data) {
 
 export function removeArtcle(params) {
   return request({
-    url: '/api/artcle/remove',
+    url: '/api/xxxx/remove',
     method: 'delete',
     params
   })
 }
 export function issueArtcle(params) {
   return request({
-    url: '/api/artcle/blogIssue',
+    url: '/api/xxxx/blogIssue',
     method: 'get',
     params
   })
@@ -98,7 +98,7 @@ export function issueArtcle(params) {
 
 export function unissueArtcle(params) {
   return request({
-    url: '/api/artcle/blogUnissue',
+    url: '/api/xxxx/blogUnissue',
     method: 'get',
     params
   })
