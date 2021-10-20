@@ -66,8 +66,10 @@ export class ArtcleController {
   }
 
   // 博客展示接口
-  @Post('wenzhangliebiao')
+  @Get('wenzhangliebiao')
   @ApiOperation({ summary: '博客展示列表' })
+  @ApiQuery({ name: 'pageSize', description: 'string' })
+  @ApiQuery({ name: 'pageNum', description: 'string' })
   async bokexxxx(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);

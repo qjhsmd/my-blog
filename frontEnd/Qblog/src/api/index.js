@@ -3,14 +3,14 @@
  * @Author: QJH
  * @Date: 2021-07-28 09:34:37
  * @LastEditors: QJH
- * @LastEditTime: 2021-10-20 11:35:57
+ * @LastEditTime: 2021-10-20 14:44:20
  */
 import request from '@/utils/request'
 
 export function fetchList(params) {
     return request({
         url: '/api/xxxx/wenzhangliebiao',
-        method: 'post',
+        method: 'get',
         params: params
     })
 }

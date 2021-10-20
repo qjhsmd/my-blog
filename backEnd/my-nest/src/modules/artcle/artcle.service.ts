@@ -148,7 +148,7 @@ export class ArtcleService {
           modify_time: 'DESC',
         },
         skip: skip,
-        take: 2,
+        take: query.pageSize,
       });
       const total = res[1];
       const list = res[0];
