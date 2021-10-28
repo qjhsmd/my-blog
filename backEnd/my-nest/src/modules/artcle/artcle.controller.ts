@@ -1,5 +1,4 @@
-import {
-  Controller,
+import {Controller,
   Get,
   Post,
   Put,
@@ -23,7 +22,7 @@ import {
 
 @ApiBearerAuth()
 @ApiTags('文章管理')
-@Controller('api/xxxx')
+@Controller('api/artcle')
 export class ArtcleController {
   constructor(
     private readonly artcleService: ArtcleService,
@@ -34,8 +33,12 @@ export class ArtcleController {
   @Get('findAll')
   @ApiOperation({ summary: '文章列表' })
   async findAll(@Query() query: any): Promise<ArtcleEntity> {
-    const res = await this.artcleService.findAll(query);
-    return res;
+    try {
+      const res = await this.artcleService.findAll(query);
+    throw new HttpException(res, HttpStatus.OK);
+    } catch (error) {
+      return error.response
+    }
   }
 
   @UseGuards(AuthGuard('jwt'))
@@ -71,13 +74,12 @@ export class ArtcleController {
   @ApiOperation({ summary: '博客展示列表' })
   @ApiQuery({ name: 'pageSize', description: 'string' })
   @ApiQuery({ name: 'pageNum', description: 'string' })
-  async bokexxxx(@Query() query: any): Promise<ArtcleEntity> {
+  async wenzhangliebiao(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);
       throw new HttpException(res, HttpStatus.OK);
        return res
     } catch (error) {
-      console.log(error.response);
       return error.response
     }
   }
