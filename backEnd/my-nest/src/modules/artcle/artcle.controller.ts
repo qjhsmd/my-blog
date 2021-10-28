@@ -8,6 +8,7 @@ import {
   Body,
   UseGuards,
   Headers,
+  HttpException, HttpStatus 
 } from '@nestjs/common';
 import { ArtcleEntity } from './artcle.entity';
 import { ArtcleService } from './artcle.service';
@@ -73,10 +74,11 @@ export class ArtcleController {
   async bokexxxx(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);
-      return res;
+      throw new HttpException(res, HttpStatus.OK);
+       return res
     } catch (error) {
-      console.log(error);
-      return error
+      console.log(error.response);
+      return error.response
     }
   }
 
