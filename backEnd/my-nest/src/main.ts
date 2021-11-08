@@ -1,9 +1,9 @@
 /*
- * @version: 1.0
+* @version: 1.0
  * @Author: QJH
  * @Date: 2021-07-28 09:34:37
  * @LastEditors: QJH
- * @LastEditTime: 2021-10-20 13:54:54
+ * @LastEditTime: 2021-11-08 16:56:25
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -13,8 +13,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 // api文档插件
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
-import { readFileSync } from 'fs';
-const os = require('os');
+import {readVersion} from './utils/tools'
 // import SnowflakeId from 'snowflake-id';
 import { WsAdapter } from './modules/events/ws.adapter';
 // import { WsAdapter } from '@nestjs/platform-ws';
@@ -49,40 +48,3 @@ const options = new DocumentBuilder()
   .addTag('用户,安全') // 每个tag标签都可以对应着几个@ApiUseTags('用户,安全') 然后被ApiUseTags注释，字符串一致的都会变成同一个标签下的
   // .setBasePath('http://localhost:5000')
   .build();
-
-async function readVersion() {
-  try {
-    const data = await readFileSync(
-      join(__dirname, '../src', './version.md'),
-      'utf-8',
-    );
-    // 等待操作结果返回，然后打印结果
-    let version = [];
-    console.log('操作系统是' + os.type());
-    if (os.type() == 'Windows_NT') {
-      version = data.split('\r\n');
-      //windows
-    } else if (os.type() == 'Darwin') {
-      version = data.split('\r');
-      //mac
-    } else if (os.type() == 'Linux') {
-      version = data.split('\n');
-      //Linux
-    } else {
-      //不支持提示
-    }
-    console.log(
-      '当前版本：' +
-      version[version.length - 1] +
-      '\r\n' +
-      '文档地址：http://localhost:3000/doc-api',
-    );
-  } catch (e) {
-    console.log('读取文件发生错误');
-  }
-}
-
-// const guid = (num) => {
-//   const id = new SnowflakeId();
-//   return id.generate();
-// };

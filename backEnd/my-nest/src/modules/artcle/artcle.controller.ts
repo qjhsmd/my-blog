@@ -35,7 +35,7 @@ export class ArtcleController {
   async findAll(@Query() query: any): Promise<any> {
     try {
       const res = await this.artcleService.findAll(query);
-       return {aaa:111}
+       return res
     } catch (error) {
       return error
     }
