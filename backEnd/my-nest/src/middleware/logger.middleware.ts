@@ -12,6 +12,8 @@ export class LoggerMiddleware implements NestMiddleware {
   ) {}
   async use(req: Request, res: Response, next: NextFunction) {
     console.log('Request...method=' + req.method + '...url=' + req.baseUrl);
+    console.log(res.status);
+    
 
     const host: any = req.headers['x-forwarded-for'];
 
