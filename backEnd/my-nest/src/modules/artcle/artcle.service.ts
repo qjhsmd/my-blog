@@ -49,7 +49,7 @@ export class ArtcleService {
         skip: query.pageSize * (query.pageNum - 1),
         take: query.pageSize,
       });
-      return { total: res[1], }; // list: res[0]
+      return {  list: res[0] }; //total: res[1],
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
