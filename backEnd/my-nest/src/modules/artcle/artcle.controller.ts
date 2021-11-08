@@ -32,12 +32,12 @@ export class ArtcleController {
   @UseGuards(AuthGuard('jwt'))
   @Get('findAll')
   @ApiOperation({ summary: '文章列表' })
-  async findAll(@Query() query: any): Promise<ArtcleEntity> {
+  async findAll(@Query() query: any): Promise<any> {
     try {
       const res = await this.artcleService.findAll(query);
-    throw new HttpException(res, HttpStatus.OK);
+       return {aaa:111}
     } catch (error) {
-      return error.response
+      return error
     }
   }
 
@@ -77,10 +77,9 @@ export class ArtcleController {
   async wenzhangliebiao(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);
-      throw new HttpException(res, HttpStatus.OK);
        return res
     } catch (error) {
-      return error.response
+      return error
     }
   }
 
