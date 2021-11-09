@@ -115,7 +115,7 @@ export default {
       this.listLoading = true
       listArtcle(this.listQuery).then(response => {
         console.log(response)
-        this.list = response.data.list
+        this.list = JSON.parse(response.data.list)
         this.total = response.data.total
       }).finally(() => {
         this.listLoading = false

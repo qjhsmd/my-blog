@@ -35,10 +35,10 @@ export class ArtcleService {
           'title',
           'classify_name',
           'author',
-          // 'create_time',
-          // 'view_count',
-          // 'update_time',
-          // 'artcle_describe',
+          'create_time',
+          'view_count',
+          'update_time',
+          'artcle_describe',
           'artcle_status',
           'modify_time',
           'id',
@@ -49,7 +49,7 @@ export class ArtcleService {
         skip: query.pageSize * (query.pageNum - 1),
         take: query.pageSize,
       });
-      return { total: res[1], list: res[0] };
+      return { total: res[1], list: JSON.stringify(res[0]) };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
