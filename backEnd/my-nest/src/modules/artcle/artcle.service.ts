@@ -49,10 +49,6 @@ export class ArtcleService {
         skip: query.pageSize * (query.pageNum - 1),
         take: query.pageSize,
       });
-      console.log(res[0]);
-      console.log('====================');
-      console.log(JSON.parse(JSON.stringify(res[0])));
-
       return { total: res[1], list: JSON.parse(JSON.stringify(res[0])) };
     } catch (err) {
       console.log(err);
