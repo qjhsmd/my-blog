@@ -157,7 +157,12 @@ export class ArtcleService {
       if (num >= total) {
         hasNextPage = false;
       }
-      return { total, list, hasNextPage, pageNum: Number(query.pageNum) };
+      return {
+        total,
+        list: JSON.stringify(list),
+        hasNextPage,
+        pageNum: Number(query.pageNum),
+      };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
