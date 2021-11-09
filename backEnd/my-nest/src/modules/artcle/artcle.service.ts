@@ -49,7 +49,11 @@ export class ArtcleService {
         skip: query.pageSize * (query.pageNum - 1),
         take: query.pageSize,
       });
-      return { total: res[1], list: JSON.stringify(res[0]) };
+      console.log(res[0]);
+      console.log('====================');
+      console.log(JSON.parse(JSON.stringify(res[0])));
+
+      return { total: res[1], list: JSON.parse(JSON.stringify(res[0])) };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
@@ -159,7 +163,7 @@ export class ArtcleService {
       }
       return {
         total,
-        list: JSON.stringify(list),
+        list: JSON.parse(JSON.stringify(list)),
         hasNextPage,
         pageNum: Number(query.pageNum),
       };

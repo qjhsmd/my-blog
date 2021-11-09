@@ -109,7 +109,7 @@ export default {
     fetchList() {
       fetchList(this.params)
         .then((res) => {
-          this.postList = JSON.parse(res.data.list) || [];
+          this.postList = res.data.list || [];
           this.currPage = Number(res.data.pageNum);
           this.hasNextPage = res.data.hasNextPage;
         })
@@ -121,7 +121,7 @@ export default {
       this.params.pageNum = this.currPage + 1
       this.params.pageSize = this.params.pageSize
       fetchList(this.params).then((res) => {
-        this.postList = this.postList.concat(JSON.parse(res.data.list) || []);
+        this.postList = this.postList.concat(res.data.list || []);
         this.currPage = Number(res.data.pageNum);
         this.hasNextPage = res.data.hasNextPage;
       });
