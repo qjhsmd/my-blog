@@ -1,7 +1,15 @@
+/*
+ * @version: 1.0
+ * @Author: QJH
+ * @Date: 2021-07-28 09:34:37
+ * @LastEditors: QJH
+ * @LastEditTime: 2021-11-09 14:35:22
+ */
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { VisitsEntity } from './visits.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getRepository } from 'typeorm';
+import { json_encode } from '../../utils/tools';
 
 @Injectable()
 export class VisitsService {
@@ -19,7 +27,7 @@ export class VisitsService {
         skip: query.pageSize * (query.page - 1),
         take: query.pageSize,
       });
-      return { total: res[1], list: res[0] };
+      return { total: res[1], list: json_encode(res[0]) };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询访问列表失败' }, HttpStatus.OK);

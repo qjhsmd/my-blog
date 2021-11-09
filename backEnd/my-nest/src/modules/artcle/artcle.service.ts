@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, IsNull, Not } from 'typeorm';
 import { CacheService } from '../app/cache.service';
 import { ClassifyService } from '../classify/classify.service';
+import { json_encode } from '../../utils/tools';
 
 @Injectable()
 export class ArtcleService {
@@ -49,7 +50,7 @@ export class ArtcleService {
         skip: query.pageSize * (query.pageNum - 1),
         take: query.pageSize,
       });
-      return { total: res[1], list: JSON.parse(JSON.stringify(res[0])) };
+      return { total: res[1], list: json_encode(res[0]) };
     } catch (err) {
       console.log(err);
       throw new HttpException({ message: '查询文章列表失败' }, HttpStatus.OK);
@@ -159,7 +160,7 @@ export class ArtcleService {
       }
       return {
         total,
-        list: JSON.parse(JSON.stringify(list)),
+        list: json_encode(list),
         hasNextPage,
         pageNum: Number(query.pageNum),
       };
