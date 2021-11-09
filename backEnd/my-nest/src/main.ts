@@ -1,9 +1,9 @@
 /*
-* @version: 1.0
+ * @version: 1.0
  * @Author: QJH
  * @Date: 2021-07-28 09:34:37
  * @LastEditors: QJH
- * @LastEditTime: 2021-11-08 16:56:25
+ * @LastEditTime: 2021-11-09 09:14:18
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -13,7 +13,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 // api文档插件
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
-import {readVersion} from './utils/tools'
+import { readVersion } from './utils/tools';
 // import SnowflakeId from 'snowflake-id';
 import { WsAdapter } from './modules/events/ws.adapter';
 // import { WsAdapter } from '@nestjs/platform-ws';

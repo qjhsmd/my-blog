@@ -1,4 +1,5 @@
-import {Controller,
+import {
+  Controller,
   Get,
   Post,
   Put,
@@ -7,7 +8,8 @@ import {Controller,
   Body,
   UseGuards,
   Headers,
-  HttpException, HttpStatus 
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { ArtcleEntity } from './artcle.entity';
 import { ArtcleService } from './artcle.service';
@@ -35,9 +37,9 @@ export class ArtcleController {
   async findAll(@Query() query: any): Promise<any> {
     try {
       const res = await this.artcleService.findAll(query);
-       return res
+      return res;
     } catch (error) {
-      return error
+      return error;
     }
   }
 
@@ -77,9 +79,9 @@ export class ArtcleController {
   async wenzhangliebiao(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);
-       return res
+      return res;
     } catch (error) {
-      return error
+      return error;
     }
   }
 
