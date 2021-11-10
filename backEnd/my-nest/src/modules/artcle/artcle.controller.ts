@@ -79,6 +79,7 @@ export class ArtcleController {
   async wenzhangliebiao(@Query() query: any): Promise<ArtcleEntity> {
     try {
       const res = await this.artcleService.blogFindAll(query);
+      console.log(res);
       return res;
     } catch (error) {
       return error;

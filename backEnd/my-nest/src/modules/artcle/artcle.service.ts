@@ -152,15 +152,14 @@ export class ArtcleService {
         take: query.pageSize,
       });
       const total = res[1];
-      const list = res[0];
-      const num = skip + list.length;
+      const num = skip + res[0].length;
       let hasNextPage = true;
       if (num >= total) {
         hasNextPage = false;
       }
       return {
         total,
-        list: json_encode(list),
+        list: json_encode(res[0]),
         hasNextPage,
         pageNum: Number(query.pageNum),
       };
