@@ -20,8 +20,8 @@ export class ArtcleService {
   async saveArtcle(artcle: ArtcleEntity): Promise<ArtcleEntity> {
     try {
       artcle.modify_time = new Date();
-      await this.classifyService.setArtcleCount(artcle.classify_id, 10, 'add');
       const res = await this.artcleRepository.save(artcle);
+      await this.classifyService.setArtcleCount(artcle.classify_id, 10, 'add');
       return res;
     } catch (err) {
       console.log(err);
