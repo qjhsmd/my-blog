@@ -11,7 +11,7 @@
         </template>
       </el-table-column>
       <!-- <el-table-column align="center" width="150" label="用户名" prop="user_name" /> -->
-      <el-table-column label="城市" width="120" prop="city" />
+      <el-table-column label="城市" width="200" prop="city" />
       <el-table-column label="IP" prop="host" />
       <el-table-column label="来源" prop="entrance" />
       <el-table-column label="终端" prop="terminal" />
