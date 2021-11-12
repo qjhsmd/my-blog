@@ -35,7 +35,7 @@ export class LoggerMiddleware implements NestMiddleware {
           terminal: terminal(req.headers['user-agent']),
           explorer: myexplorer(req.headers['user-agent']),
         };
-
+         console.log(params);
         this.visitsService.saveVisits(params);
       }
     }
