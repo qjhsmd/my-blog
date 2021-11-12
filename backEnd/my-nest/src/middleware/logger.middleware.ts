@@ -17,6 +17,7 @@ export class LoggerMiddleware implements NestMiddleware {
 
     // 内网的不记录
     if (host && !checkIsInsideIP(host)) {
+      //
       const visits = await this.cacheService.get(host);
       if (visits === null) {
         await this.cacheService.set(host, true, 1800);
@@ -58,23 +59,28 @@ function terminal(userAgent) {
 }
 
 function myexplorer(explorer) {
+  console.log(explorer);
   if (explorer) {
-    if (explorer.indexOf('MSIE') >= 0 && explorer.indexOf('Trident')) {
-      return 'ie';
-    } else if (explorer.indexOf('Firefox') >= 0) {
-      return 'Firefox';
-    } else if (explorer.indexOf('Chrome') >= 0) {
-      return 'Chrome';
-    } else if (explorer.indexOf('Opera') >= 0) {
-      return 'Opera';
-    } else if (explorer.indexOf('Safari') >= 0) {
-      return 'Safari';
-    } else if (explorer.indexOf('Netscape') >= 0) {
-      return 'Netscape';
-    } else if (explorer.indexOf('AppleWebKit') >= 0) {
-      return 'AppleWebKit 内核的其他浏览器';
+    if (explorer.indexOf('Micromessenger') >= 0) {
+      return '微信浏览器';
     } else {
-      return '未知浏览器';
+      if (explorer.indexOf('MSIE') >= 0 && explorer.indexOf('Trident')) {
+        return 'ie';
+      } else if (explorer.indexOf('Firefox') >= 0) {
+        return 'Firefox';
+      } else if (explorer.indexOf('Chrome') >= 0) {
+        return 'Chrome';
+      } else if (explorer.indexOf('Opera') >= 0) {
+        return 'Opera';
+      } else if (explorer.indexOf('Safari') >= 0) {
+        return 'Safari';
+      } else if (explorer.indexOf('Netscape') >= 0) {
+        return 'Netscape';
+      } else if (explorer.indexOf('AppleWebKit') >= 0) {
+        return 'AppleWebKit 内核的其他浏览器';
+      } else {
+        return '未知浏览器';
+      }
     }
   } else {
     return '未知浏览器';
