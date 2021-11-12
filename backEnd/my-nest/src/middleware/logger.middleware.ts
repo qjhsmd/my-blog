@@ -22,7 +22,7 @@ export class LoggerMiddleware implements NestMiddleware {
         await this.cacheService.set(host, true, 1800);
         let city: any = 'China';
         if (lookup(host) != null) {
-          city = lookup(host).city;
+          city = lookup(host).country + '_' + lookup(host).city;
         }
         const params = {
           host: host ? host : '未知地址',
