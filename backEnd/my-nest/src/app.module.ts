@@ -1,3 +1,10 @@
+/*
+ * @version: 1.0
+ * @Author: QJH
+ * @Date: 2021-07-28 09:34:37
+ * @LastEditors: QJH
+ * @LastEditTime: 2021-11-12 16:40:27
+ */
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './modules/app/app.controller';
 import { AppService } from './modules/app/app.service';

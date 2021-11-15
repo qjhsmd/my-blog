@@ -17,7 +17,6 @@ export class LoggerMiddleware implements NestMiddleware {
 
     // 内网的不记录
     if (host && !checkIsInsideIP(host)) {
-      //
       const visits = await this.cacheService.get(host);
       if (visits === null) {
         await this.cacheService.set(host, true, 1800);
@@ -35,7 +34,7 @@ export class LoggerMiddleware implements NestMiddleware {
           terminal: terminal(req.headers['user-agent']),
           explorer: myexplorer(req.headers['user-agent']),
         };
-         console.log(params);
+
         this.visitsService.saveVisits(params);
       }
     }
