@@ -5,6 +5,8 @@
       <el-button type="primary" size="small" @click="redeploy">重新部署后台</el-button>
       <el-button type="primary" size="small" @click="adminRedeploy">重新部署Blog-admin</el-button>
       <el-button type="primary" size="small" @click="blogRedeploy">重新部署Blog</el-button>
+      <el-button type="primary" size="small" @click="petRedeploy">重新部署Pet</el-button>
+
     </el-row>
     <br>
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
@@ -63,7 +65,7 @@
 </template>
 
 <script>
-import { userList, userRemove, saveUser, redeploy, adminRedeploy, blogRedeploy } from '@/api/sys'
+import { userList, userRemove, saveUser, redeploy, adminRedeploy, blogRedeploy, petRedeploy } from '@/api/sys'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
@@ -173,6 +175,17 @@ export default {
         this.$message({
           type: 'warning',
           message: '后台服务正在重新部署Blog端，请稍后刷新Blog端'
+        })
+      }).finally(() => {
+        this.listLoading = false
+      })
+    },
+    petRedeploy() {
+      this.listLoading = true
+      petRedeploy().then(response => {
+        this.$message({
+          type: 'warning',
+          message: '后台服务正在重新部署Pet，请稍后刷新Pet'
         })
       }).finally(() => {
         this.listLoading = false

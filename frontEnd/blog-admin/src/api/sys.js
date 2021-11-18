@@ -1,3 +1,10 @@
+/*
+ * @version: 1.0
+ * @Author: QJH
+ * @Date: 2021-07-28 09:34:37
+ * @LastEditors: QJH
+ * @LastEditTime: 2021-11-18 10:57:03
+ */
 import request from '@/utils/request'
 
 export function userList(query) {
@@ -60,6 +67,12 @@ export function adminRedeploy() {
 export function blogRedeploy() {
   return request({
     url: '/api/user/blogRedeploy',
+    method: 'get'
+  })
+}
+export function petRedeploy() {
+  return request({
+    url: '/api/user/petRedeploy',
     method: 'get'
   })
 }

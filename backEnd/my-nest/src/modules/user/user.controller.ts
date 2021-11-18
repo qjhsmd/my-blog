@@ -92,6 +92,28 @@ export class UserController {
     );
     return {};
   }
+  @Get('petRedeploy')
+  @ApiOperation({ summary: '重新部署pet' })
+  async petRedeploy(): Promise<any> {
+    const params = {
+      subject: '您重新编译Pet',
+      text: '编译成功，部署成功',
+    };
+    await execFile(
+      '/www/back-end/nest/src/modules/user/sysPetsh',
+      null,
+      (error, stdout, stderr) => {
+        if (error) {
+          params.text = '编译失败，请尽快重试';
+          this.mailService.sendMail(params);
+          throw error;
+        }
+        console.log(stdout);
+        this.mailService.sendMail(params);
+      },
+    );
+    return {};
+  }
 
   @Post('saveUser')
   @ApiOperation({ summary: '管理员创建用户' })
