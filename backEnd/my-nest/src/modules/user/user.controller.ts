@@ -100,7 +100,7 @@ export class UserController {
       text: '编译成功，部署成功',
     };
     await execFile(
-      '/www/back-end/nest/src/modules/user/sysPetsh',
+      '/www/back-end/nest/src/modules/user/sysPet.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
