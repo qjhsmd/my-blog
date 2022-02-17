@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-28 09:34:37
+ * @LastEditTime: 2022-02-17 15:16:51
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \Qblog\src\router\index.js
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
@@ -50,11 +58,11 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
     let title = '以后的博客'
-    if (to.meta.params){
-        title = `${to.meta.title}:${to.params[to.meta.params] || ''} - ${title}`
-    }else {
-        title = `${to.meta.title} - ${title}`
-    }
+    // if (to.meta.params){
+    //     title = `${to.meta.title}:${to.params[to.meta.params] || ''} - ${title}`
+    // }else {
+    //     title = `${to.meta.title} - ${title}`
+    // }
     document.title = title
     if (to.path !== from.path) {
         store.dispatch('setLoading', true);

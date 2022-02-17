@@ -165,6 +165,7 @@ export default {
       artcleDetail({ id: this.$route.params.id })
         .then((res) => {
           this.details = res.data || [];
+          document.title= this.details.title + ' - 以后的博客'
           this.$nextTick(() => {
             Prismjs.highlightAll(); //数据渲染完成后执行一次
             this.createMenus()
