@@ -2,8 +2,8 @@
  * @version: 1.0
  * @Author: QJH
  * @Date: 2021-07-28 09:34:37
- * @LastEditors: QJH
- * @LastEditTime: 2021-11-12 16:40:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-02-21 16:05:25
  */
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './modules/app/app.controller';
@@ -51,8 +51,8 @@ import { RedisModule } from 'nestjs-redis';
       synchronize: true,
     }),
     RedisModule.register({
-      port: 6699,
-      host: '106.53.251.59',
+      port: 6379,
+      host: '127.0.0.1',
       password: 'qjh15608351443',
     }),
     AdminsModule,
