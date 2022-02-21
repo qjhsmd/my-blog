@@ -3,12 +3,12 @@
  # @version: 1.0
  # @Author: QJH
  # @Date: 2021-11-18 10:49:18
- # @LastEditors: QJH
- # @LastEditTime: 2021-11-18 11:24:07
+ # @LastEditors: Please set LastEditors
+ # @LastEditTime: 2022-02-21 16:18:58
 ### 
 cd /www/res/pet && 
 git pull &&
-cnpm install &&
+npm install &&
 npm run build &&
 rm -rf /www/front-end/pet/* &&
 cp -r /www/res/pet/dist/* /www/front-end/pet/
