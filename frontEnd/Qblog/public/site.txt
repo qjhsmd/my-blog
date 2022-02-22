@@ -1,0 +1,10 @@
+http://blog.cnnngt.top
+http://blog.cnnngt.top/category/10?classify=nest
+http://blog.cnnngt.top/category/12?classify=JS
+http://blog.cnnngt.top/category/14?classify=Linux
+http://blog.cnnngt.top/category/15?classify=Node
+http://blog.cnnngt.top/category/16?classify=mysql
+http://blog.cnnngt.top/category/17?classify=TS
+http://blog.cnnngt.top/category/18?classify=Redis
+http://blog.cnnngt.top/category/19?classify=React
+http://blog.cnnngt.top/category/20?classify=HTTP
