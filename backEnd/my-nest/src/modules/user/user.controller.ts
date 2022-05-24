@@ -33,7 +33,7 @@ export class UserController {
       text: '编译成功，部署成功',
     };
     await execFile(
-      '/www/back-end/nest/src/modules/user/sys.sh',
+      '/www/res/my-blog/sh/sys.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
@@ -56,7 +56,7 @@ export class UserController {
       text: '编译成功，部署成功',
     };
     await execFile(
-      '/www/back-end/nest/src/modules/user/sysAdmin.sh',
+      '/www/res/my-blog/sh/sysAdmin.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
@@ -78,7 +78,7 @@ export class UserController {
       text: '编译成功，部署成功',
     };
     await execFile(
-      '/www/back-end/nest/src/modules/user/sysBlog.sh',
+      '/www/res/my-blog/sh/sysBlog.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
@@ -100,7 +100,7 @@ export class UserController {
       text: '编译成功，部署成功',
     };
     await execFile(
-      '/www/back-end/nest/src/modules/user/sysPet.sh',
+      '/www/res/my-blog/sh/sysPet.sh',
       null,
       (error, stdout, stderr) => {
         if (error) {
