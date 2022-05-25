@@ -32,7 +32,7 @@ export class UserController {
       subject: '您重新编译后台',
       text: '编译成功，正在重新部署，请稍后重试',
     };
-    execFile(
+  const mySh =  execFile(
       '/www/res/my-blog/sh/sys.sh',
       null,
       (error, stdout, stderr) => {
@@ -54,7 +54,10 @@ export class UserController {
         // });
       },
     );
-
+    mySh.on('close', (code) => {
+      console.log('子进程结束啦');
+      console.log(`child process exited with code ${code}`);
+    });
     return {};
   }
   @Get('adminRedeploy')
