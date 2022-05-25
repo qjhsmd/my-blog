@@ -14,7 +14,7 @@ import { UserService } from './user.service';
 import { User } from './user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { execFile } from 'child_process';
+import { execFile,exec } from 'child_process';
 import { MailService } from '../mailer/mailer.service';
 
 @Controller('api/user')
@@ -30,7 +30,7 @@ export class UserController {
   async redeploy(): Promise<any> {
     const params = {
       subject: '您重新编译后台',
-      text: '编译成功，部署成功',
+      text: '编译成功，正在重新部署，请稍后重试',
     };
     await execFile(
       '/www/res/my-blog/sh/sys.sh',
@@ -42,9 +42,18 @@ export class UserController {
           throw error;
         }
         this.mailService.sendMail(params);
+        console.log('stdout');
         console.log(stdout);
       },
     );
+    exec('pm2 restart 0', function(error, stdout, stderr){
+      if(error) {
+          console.error('error: ' + error);
+          return;
+      }
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + typeof stderr);
+  });
     return {};
   }
   @Get('adminRedeploy')
@@ -67,6 +76,7 @@ export class UserController {
         this.mailService.sendMail(params);
       },
     );
+    
     return {};
   }
   @Get('blogRedeploy')
