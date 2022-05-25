@@ -44,19 +44,20 @@ export class UserController {
         this.mailService.sendMail(params);
         console.log('stdout');
         console.log(stdout);
-        // exec('pm2 restart 0', function (error, stdout, stderr) {
-        //   if (error) {
-        //     console.error('error: ' + error);
-        //     return;
-        //   }
-        //   console.log('stdout: ' + stdout);
-        //   console.log('stderr: ' + typeof stderr);
-        // });
+        
       },
     );
     mySh.on('close', (code) => {
       console.log('子进程结束啦');
       console.log(`child process exited with code ${code}`);
+      exec('pm2 restart 0', function (error, stdout, stderr) {
+          if (error) {
+            console.error('error: ' + error);
+            return;
+          }
+          console.log('stdout: ' + stdout);
+          console.log('stderr: ' + typeof stderr);
+        });
     });
     return {};
   }
