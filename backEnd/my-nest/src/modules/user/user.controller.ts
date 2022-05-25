@@ -44,14 +44,14 @@ export class UserController {
         this.mailService.sendMail(params);
         console.log('stdout');
         console.log(stdout);
-        exec('pm2 restart 0', function (error, stdout, stderr) {
-          if (error) {
-            console.error('error: ' + error);
-            return;
-          }
-          console.log('stdout: ' + stdout);
-          console.log('stderr: ' + typeof stderr);
-        });
+        // exec('pm2 restart 0', function (error, stdout, stderr) {
+        //   if (error) {
+        //     console.error('error: ' + error);
+        //     return;
+        //   }
+        //   console.log('stdout: ' + stdout);
+        //   console.log('stderr: ' + typeof stderr);
+        // });
       },
     );
 
