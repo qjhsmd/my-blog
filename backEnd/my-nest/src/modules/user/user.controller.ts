@@ -49,14 +49,14 @@ export class UserController {
       // this.mailService.sendMail(params);
       console.log('子进程正常结束啦');
       console.log(`child process exited with code ${code}`);
-      exec('pm2 restart 0', function (error, stdout, stderr) {
-        if (error) {
-          console.error('error: ' + error);
-          return;
-        }
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + typeof stderr);
-      });
+      // exec('pm2 restart 0', function (error, stdout, stderr) {
+      //   if (error) {
+      //     console.error('error: ' + error);
+      //     return;
+      //   }
+      //   console.log('stdout: ' + stdout);
+      //   console.log('stderr: ' + typeof stderr);
+      // });
     });
     mySh.on('error', (code) => {
       // params.text = '编译失败，请尽快重试';
