@@ -28,10 +28,10 @@ export class UserController {
   @Get('redeploy')
   @ApiOperation({ summary: '重新部署后台' })
   async redeploy(): Promise<any> {
-    let params = {
-      subject: '您重新编译后台',
-      text: '编译成功，正在重新部署，请稍后重试',
-    };
+    // let params = {
+    //   subject: '您重新编译后台',
+    //   text: '编译成功，正在重新部署，请稍后重试',
+    // };
     const mySh = execFile(
       '/www/res/my-blog/sh/sys.sh',
       null,
@@ -46,7 +46,7 @@ export class UserController {
       },
     );
     mySh.on('close', (code) => {
-      this.mailService.sendMail(params);
+      // this.mailService.sendMail(params);
       console.log('子进程正常结束啦');
       console.log(`child process exited with code ${code}`);
       exec('pm2 restart 0', function (error, stdout, stderr) {
@@ -59,15 +59,15 @@ export class UserController {
       });
     });
     mySh.on('error', (code) => {
-      params.text = '编译失败，请尽快重试';
-      this.mailService.sendMail(params);
+      // params.text = '编译失败，请尽快重试';
+      // this.mailService.sendMail(params);
       console.log('子进程发生错误');
       console.log(`child process exited with code ${code}`);
 
     });
     mySh.on('exit', (code) => {
-      params.text = '编译失败，请尽快重试';
-      this.mailService.sendMail(params);
+      // params.text = '编译失败，请尽快重试';
+      // this.mailService.sendMail(params);
       console.log('子进程退出');
       console.log(`child process exited with code ${code}`);
 
@@ -77,7 +77,7 @@ export class UserController {
   @Get('adminRedeploy')
   @ApiOperation({ summary: '重新部署blog-admin' })
   async adminRedeploy(): Promise<any> {
-    const params = {
+    let params = {
       subject: '您重新编译管理端',
       text: '编译成功，部署成功',
     };
@@ -100,7 +100,7 @@ export class UserController {
   @Get('blogRedeploy')
   @ApiOperation({ summary: '重新部署blog' })
   async blogRedeploy(): Promise<any> {
-    const params = {
+    let params = {
       subject: '您重新编译博客端',
       text: '编译成功，部署成功',
     };
@@ -122,7 +122,7 @@ export class UserController {
   @Get('petRedeploy')
   @ApiOperation({ summary: '重新部署pet' })
   async petRedeploy(): Promise<any> {
-    const params = {
+    let params = {
       subject: '您重新编译Pet',
       text: '编译成功，部署成功',
     };
