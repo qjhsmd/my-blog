@@ -28,7 +28,7 @@ export class UserController {
   @Get('redeploy')
   @ApiOperation({ summary: '重新部署后台' })
   async redeploy(): Promise<any> {
-    const params = {
+    let params = {
       subject: '您重新编译后台',
       text: '编译成功，正在重新部署，请稍后重试',
     };
@@ -62,6 +62,13 @@ export class UserController {
       params.text = '编译失败，请尽快重试';
       this.mailService.sendMail(params);
       console.log('子进程发生错误');
+      console.log(`child process exited with code ${code}`);
+
+    });
+    mySh.on('exit', (code) => {
+      params.text = '编译失败，请尽快重试';
+      this.mailService.sendMail(params);
+      console.log('子进程退出');
       console.log(`child process exited with code ${code}`);
 
     });
