@@ -42,9 +42,7 @@ export class UserController {
           throw error;
         }
         this.mailService.sendMail(params);
-
         console.log(stdout);
-        console.log('后台编译成功');
       },
     );
     return {};
