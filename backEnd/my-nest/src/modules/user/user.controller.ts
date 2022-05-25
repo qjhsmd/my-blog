@@ -32,7 +32,7 @@ export class UserController {
       subject: '您重新编译后台',
       text: '编译成功，正在重新部署，请稍后重试',
     };
-  const mySh =  execFile(
+    const mySh = execFile(
       '/www/res/my-blog/sh/sys.sh',
       null,
       (error, stdout, stderr) => {
@@ -41,23 +41,22 @@ export class UserController {
           this.mailService.sendMail(params);
           throw error;
         }
-        this.mailService.sendMail(params);
         console.log('stdout');
         console.log(stdout);
-        
       },
     );
     mySh.on('close', (code) => {
+      this.mailService.sendMail(params);
       console.log('子进程结束啦');
       console.log(`child process exited with code ${code}`);
       exec('pm2 restart 0', function (error, stdout, stderr) {
-          if (error) {
-            console.error('error: ' + error);
-            return;
-          }
-          console.log('stdout: ' + stdout);
-          console.log('stderr: ' + typeof stderr);
-        });
+        if (error) {
+          console.error('error: ' + error);
+          return;
+        }
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + typeof stderr);
+      });
     });
     return {};
   }
