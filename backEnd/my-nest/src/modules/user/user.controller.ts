@@ -37,17 +37,17 @@ export class UserController {
       null,
       (error, stdout, stderr) => {
         if (error) {
-          params.text = '编译失败，请尽快重试';
-          this.mailService.sendMail(params);
           throw error;
         }
         console.log('stdout');
         console.log(stdout);
+        console.log('stderr');
+        console.log(stderr);
       },
     );
     mySh.on('close', (code) => {
       this.mailService.sendMail(params);
-      console.log('子进程结束啦');
+      console.log('子进程正常结束啦');
       console.log(`child process exited with code ${code}`);
       exec('pm2 restart 0', function (error, stdout, stderr) {
         if (error) {
@@ -57,6 +57,13 @@ export class UserController {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + typeof stderr);
       });
+    });
+    mySh.on('error', (code) => {
+      params.text = '编译失败，请尽快重试';
+      this.mailService.sendMail(params);
+      console.log('子进程发生错误');
+      console.log(`child process exited with code ${code}`);
+
     });
     return {};
   }
